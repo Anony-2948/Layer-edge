@@ -22,34 +22,29 @@ body {
 }
 
 .gradient-bg-services {
-  background-color:#0f0e13;
-  background-image: 
-    radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
-    radial-gradient(at 50% 100%, hsla(225,39%,25%,1) 0, transparent 50%);
+  background-color:#000000;
+  
 }
 /* New Gradient for CryptoChart */
 /* New Gradient for Extreme Left and Right */
 .gradient-bg-cryptochart {
-  background-color: #0f0e13; /* Fallback color */
+  background-color: #000000; /* Fallback color */
   background-image: 
     /* Aesthetic circular gradient */
     radial-gradient(circle, hsla(225, 39%, 25%, 1) 0%, transparent 50%); /* Central gradient */
   background-position: center;
-  background-size: 80% 80%; /* Balanced size for a subtle effect */
+  background-size: 60% 60%; /* Balanced size for a subtle effect */
   background-repeat: no-repeat;
 }
 
 
 
 .gradient-bg-transactions {
-  background-color: #0f0e13;
-  background-image: 
-    radial-gradient(at 0% 100%, hsla(253,16%,7%,1) 0, transparent 50%), 
-    radial-gradient(at 50% 0%, hsla(225,39%,25%,1) 0, transparent 50%);
+  background-color: #000000;
 }
 
 .gradient-bg-footer {
-  background-color: #0f0e13;
+  background-color: #000000;
   background-image: 
     radial-gradient(at 0% 100%, hsla(253,16%,7%,1) 0, transparent 53%), 
     radial-gradient(at 50% 150%, hsla(339,49%,30%,1) 0, transparent 50%);

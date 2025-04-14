@@ -23,9 +23,9 @@ const TeamMemberCard = ({ name, regNo, color = "bg-[#2952e3]" }) => {
 
 const Footer = () => {
     const teamMembers = [
-        { name: "Harsh Patel", regNo: "21BKT015", color: "bg-[#2952e3]" },
         { name: "Ayush Patil", regNo: "21BCT0330", color: "bg-[#8945F8]" },
         { name: "Pranav Phadatare", regNo: "21BCE2694", color: "bg-[#F84550]" },
+        { name: "Yashraj Jadhav", regNo: "21BCE2623", color: "bg-[#2952e3]" },
     ];
 
     return (
@@ -33,10 +33,7 @@ const Footer = () => {
                       <div className="sm:w-[90%] w-full h-[0.25px] bg-gray-400 mt-5pt-[50px]" />
 
 
-            <div className="flex flex-[0.5] justify-center items-center pt-[50px] ">
-                <img src={logo} alt="logo" className="w-48" />
-            </div>
-
+           
             {/* Project Description Section */}
             <div className="flex flex-col items-center mt-8 w-full max-w-[800px]">
                 <h1 className="text-white text-lg font-semibold mb-3">

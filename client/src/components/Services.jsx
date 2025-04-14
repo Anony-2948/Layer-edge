@@ -16,44 +16,43 @@ const ServiceCard = ({ color, title, icon, subtitle }) => (
     </div>
   </div>
 );
-
 const Services = () => (
   <div className="flex w-full justify-center items-center gradient-bg-services">
     <div className="flex mf:flex-row flex-col items-center justify-between md:p-20 py-12 px-4">
       <div className="flex-1 flex flex-col justify-start items-start">
         <h1 className="text-white text-3xl sm:text-5xl py-2 text-gradient ">
-          Services that we
+          Layer 2 Powered
           <br />
-          continue to improve
+          Services for Everyone
         </h1>
         <p className="text-left my-2 text-white font-light md:w-9/12 w-11/12 text-base">
-          The best choice for buying and selling your crypto assets, with the
-          various super friendly services we offer
+          Experience faster, cheaper, and more scalable crypto transactions using our Layer 2 enhanced infrastructure.
         </p>
       </div>
 
       <div className="flex-1 flex flex-col justify-start items-center">
         <ServiceCard
           color="bg-[#2952E3]"
-          title="Security gurantee"
+          title="Scalable Security"
           icon={<BsShieldFillCheck fontSize={21} className="text-white" />}
-          subtitle="Security is guranteed. We always maintain privacy and maintain the quality of our products"
+          subtitle="Benefit from Ethereum-grade security with Layer 2 scalability for faster and safer transactions."
         />
         <ServiceCard
           color="bg-[#8945F8]"
-          title="Best exchange rates"
+          title="Low Gas Fees"
           icon={<BiSearchAlt fontSize={21} className="text-white" />}
-          subtitle="Security is guranteed. We always maintain privacy and maintain the quality of our products"
+          subtitle="Conduct high-volume transactions with minimal gas fees thanks to our Layer 2 integration."
         />
         <ServiceCard
           color="bg-[#F84550]"
-          title="Fastest transactions"
+          title="Instant Settlements"
           icon={<RiHeart2Fill fontSize={21} className="text-white" />}
-          subtitle="Security is guranteed. We always maintain privacy and maintain the quality of our products"
+          subtitle="Enjoy near-instant transaction finality and seamless cross-chain bridging using Layer 2 tech."
         />
       </div>
     </div>
   </div>
 );
+
 
 export default Services;

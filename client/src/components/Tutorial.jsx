@@ -34,14 +34,14 @@ const Tutorial = () => {
   };
 
   return (
-    <div className="flex flex-col bg-[#0f0e13] pt-[20px] pb-[70px]">
+    <div className="flex flex-col bg-[#000000] pt-[20px] pb-[70px]">
       <div className="flex mf:flex-row flex-col items-center justify-between md:p-8 py-6 px-4">
         <div className="flex-1 flex flex-col justify-start items-center w-full">
           <h1 className="text-white text-3xl sm:text-5xl py-2 text-gradient text-center">
-            How Users Can Use Cryptpay
+            How Users Can Use LayerEdge
           </h1>
           <h1 className="text-transparent text-3xl sm:text-2xl py-2 text-center">
-            How Users Can Use Cryptpay
+            How Users Can Use LayerEdge
           </h1>
         </div>
       </div>
@@ -51,15 +51,15 @@ const Tutorial = () => {
           color="bg-[#3f8efc]"
           title="Download and Setup Metamask"
           icon={<FaWallet fontSize={32} className="text-white" />}
-          subtitle="Install the Metamask wallet and complete the setup process."
+          subtitle="Install the Metamask wallet extension on chrome."
           isOpen={openCard === 0}
           toggleOpen={() => handleToggle(0)}
         />
         <TutorialCard
           color="bg-[#7a42f4]"
-          title="Access Cryptpay Platform"
+          title="Access LayerEdge Platform"
           icon={<FaGlobe fontSize={32} className="text-white" />}
-          subtitle="Visit the Cryptpay website and connect your Metamask wallet."
+          subtitle="Visit the LayerEdge website and connect your Metamask wallet."
           isOpen={openCard === 1}
           toggleOpen={() => handleToggle(1)}
         />
@@ -67,7 +67,7 @@ const Tutorial = () => {
           color="bg-[#28a745]"
           title="Start Exchanging"
           icon={<FaExchangeAlt fontSize={32} className="text-white" />}
-          subtitle="Select the cryptocurrencies you want to exchange, view live prices, and execute transactions."
+          subtitle="Select the cryptocurrencies you want to exchange, view live prices, and execute transactions with low gas fees and fast transfer."
           isOpen={openCard === 2}
           toggleOpen={() => handleToggle(2)}
         />

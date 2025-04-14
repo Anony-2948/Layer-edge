@@ -32,7 +32,6 @@ async function main() {
 
   // Try a test call first to verify everything works
   try {
-    // Call view function if available, or estimate gas for a transaction
     const gasEstimate = await contract.estimateGas.addToBlockchain(
       "0xf04E175Ab8B608BA3e464D5f9d1Db020d20Fd115",
       ethers.utils.parseEther("0.0001"),
@@ -42,11 +41,7 @@ async function main() {
     console.log(`✅ Contract method call successful, estimated gas: ${gasEstimate.toString()}`);
   } catch (err) {
     console.error("❌ Contract test call failed:", err.message);
-    console.log("\nDebugging contract interaction...");
-    
-    // Try to determine what might be causing the issue
     try {
-      // Get contract interface
       const contractInterface = new ethers.utils.Interface(contractABI);
       console.log("Contract methods:", 
         contractInterface.fragments
@@ -55,18 +50,16 @@ async function main() {
     } catch (err) {
       console.error("Error analyzing contract:", err.message);
     }
-    
     return;
   }
 
-  const numTransactions = 20;
+  const numTransactions = 10;
   let successCount = 0;
   let totalGasUsed = ethers.BigNumber.from("0");
 
-  // Set gas params correctly for Polygon Amoy
-  const maxPriorityFeePerGas = ethers.utils.parseUnits("30", "gwei"); // Required minimum is 25 gwei
+  const maxPriorityFeePerGas = ethers.utils.parseUnits("30", "gwei");
   const maxFeePerGas = ethers.utils.parseUnits("50", "gwei");
-  const gasLimit = 500000; // Increased gas limit
+  const gasLimit = 500000;
 
   console.log(`🚀 Sending ${numTransactions} transactions to Polygon Amoy...`);
   console.log(`💰 Using maxPriorityFeePerGas: ${ethers.utils.formatUnits(maxPriorityFeePerGas, "gwei")} gwei`);
@@ -78,13 +71,11 @@ async function main() {
   for (let i = 0; i < numTransactions; i++) {
     try {
       console.log(`Preparing transaction ${i + 1}...`);
-      
-      // Get nonce manually to avoid nonce conflicts
       const nonce = await wallet.getTransactionCount("pending");
       console.log(`Using nonce: ${nonce}`);
       
       const tx = await contract.addToBlockchain(
-        "0xf04E175Ab8B608BA3e464D5f9d1Db020d20Fd115", // Test receiver
+        "0xf04E175Ab8B608BA3e464D5f9d1Db020d20Fd115",
         ethers.utils.parseEther("0.0001"),
         `Load Test ${i + 1}`,
         "test",
@@ -103,12 +94,10 @@ async function main() {
       
       if (receipt.status === 1) {
         totalGasUsed = totalGasUsed.add(receipt.gasUsed);
-        console.log(`✅ Tx ${i + 1}: ${tx.hash} (${receipt.gasUsed.toString()} gas used)`);
+        console.log(`✅ Tx ${i + 1}: ${tx.hash} `);
         successCount++;
       } else {
         console.error(`❌ Tx ${i + 1} failed with status 0`);
-        
-        // Try to get more details using trace API if available
         try {
           const trace = await provider.send("debug_traceTransaction", [tx.hash]);
           console.log("Transaction trace:", JSON.stringify(trace, null, 2));
@@ -118,8 +107,6 @@ async function main() {
       }
     } catch (err) {
       console.error(`❌ Tx ${i + 1} failed:`, err.message);
-      
-      // Extract the revert reason if possible
       if (err.data) {
         try {
           const decodedError = contract.interface.parseError(err.data);
@@ -130,7 +117,6 @@ async function main() {
       }
     }
 
-    // Add a longer delay between transactions
     console.log(`Waiting before next transaction...`);
     await new Promise(res => setTimeout(res, 2000));
   }
@@ -142,7 +128,18 @@ async function main() {
   console.log("\n📊 Test Results:");
   console.log(`  ✅ Success: ${successCount}/${numTransactions}`);
   console.log(`  ⚡ TPS: ${TPS}`);
-  console.log(`  ⛽ Avg Gas Used: ${avgGas.toString()}`);
+  console.log(`  ⛽ Total Gas Used: ${avgGas.toString()}`);
+
+  // 🧮 INR Cost Calculation
+  const gasPriceGwei = parseFloat(process.env.GAS_PRICE_GWEI || "30");
+  const maticInr = parseFloat(process.env.MATIC_INR || "90");
+
+  const gasPriceWei = ethers.utils.parseUnits(gasPriceGwei.toString(), "gwei");
+  const gasCostWei = avgGas.mul(gasPriceWei);
+  const gasCostEth = parseFloat(ethers.utils.formatEther(gasCostWei));
+  const gasCostInr = gasCostEth * maticInr;
+
+  console.log(`  💸 Total Gas Fee in INR: ₹${gasCostInr.toFixed(2)}`);
 }
 
 main().catch(err => {
